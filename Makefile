@@ -5,20 +5,30 @@ CC = cc
 AR = ar -crs
 RM = rm -f
 
+LIBFTA = libft_ext/libft.a
+MLXA = mlx/libmlx.a
+
 SRCS = so_long.c
 
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+all : makes_files $(NAME)
 
 $(NAME) : $(OBJS)
 	$(AR) $(NAME) $(OBJS)
+
+makes_files:
+	@make all -C ./libft_ext
+	@make all -sC ./mlx
 	
 clean:
 	$(RM) $(OBJS)
+	@make clean -C libft_ext
+	@make clean -C mlx
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(LIBFTA)
 
 re: fclean all
 
