@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 19:43:33 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/02 15:04:38 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:04:23 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char				*read_till_find(int fd, char *str_static);
 char				*get_next_line(int fd);
 
 // UTILS FUNCTIONS GET_NEXT_LINE
-int					ft_strlen(const char *str);
+int					ft_strlen_gnl(const char *str);
 int					ft_strchr_gnl(const char *s, int c);
 char				*ft_strjoin_gnl(char *main, char *buffer);
 char				*ft_substr_gnl(char *s, unsigned int start, size_t len);
