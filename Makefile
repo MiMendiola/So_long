@@ -8,7 +8,7 @@ RM = rm -f
 LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
-SRCS = so_long.c
+SRCS = map_parse.c
 
 OBJS = $(SRCS:.c=.o)
 
