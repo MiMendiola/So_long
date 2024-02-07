@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   message.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/03 14:04:03 by mmendiol         ###   ########.fr       */
+/*   Created: 2024/02/07 12:08:57 by mmendiol          #+#    #+#             */
+/*   Updated: 2024/02/07 23:54:32 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "./so_long.h"
 
-typedef struct s_map
+void    show_error(char *str)
 {
-    char    **map_copy;
-    int     map_w;
-    int     map_h;
-    
-}               t_map;
-
-
-#endif
+    ft_putstr_fd(RED "ERROR: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(CLEAR, 2);
+	exit (EXIT_FAILURE);
+}
