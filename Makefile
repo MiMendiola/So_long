@@ -6,6 +6,7 @@ GREEN	=	\033[92;1m
 CLEAR	=	\033[0m
 
 CFLAGS = -Wall -Werror -Wextra
+MLXFLAGS = -framework OpenGL -framework AppKit
 CC = cc
 AR = ar -crs
 RM = rm -f
@@ -13,7 +14,7 @@ RM = rm -f
 LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
-SRCS = $(addprefix ./src/, map_parse.c message.c) 
+SRCS = $(addprefix ./src/, parse_map/map_parse.c main.c message.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,7 +25,12 @@ $(NAME) : $(OBJS)
 	@echo "$(GREEN)Compiling Libft.$(CLEAR)"
 	@make all -sC ./mlx
 	@echo "$(GREEN)Compiling Mlx.$(CLEAR)"
-	@$(AR) $(NAME) $(OBJS)
+
+
+
+	@$(CC) $(CFLAGS) $(OBJS) -I ./src/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME)
+
+
 	@echo "$(GREEN)So_long Compiled.$(CLEAR)"
 
 clean:
