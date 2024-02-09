@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/08 19:47:49 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:23:08 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@
 # define BG_GRAY    "\x1B[48;2;176;174;174m"
 # define BG_ROSE    "\x1B[48;2;255;151;203m"
 
-typedef struct	s_data {
+typedef struct	s_sprites {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+	char	*path;
+	int		img_w;
+	int		img_h;
+}				t_sprites;
 
 typedef struct s_map
 {

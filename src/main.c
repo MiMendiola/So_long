@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/08 19:46:54 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/09 15:17:53 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,79 @@
 // #include "../libft_ext/get_next_line.c"
 // #include "../libft_ext/get_next_line_utils.c"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+
+
+void	sprite_creator(t_game *game, char *path, int posx, int posy)
+{
+	t_sprites	*img;
+	
+	img = malloc(sizeof(t_sprites));
+	img->path = path;
+	img->img_w = 52;
+	img->img_h = 52;
+
+	img = mlx_xpm_file_to_image(game->mlx, img->path, &img->img_w, &img->img_h);
+	if (!img) {
+		fprintf(stderr, "Error loading image from %s\n", img->path);
+		exit(1);
+	}
+	
+	mlx_put_image_to_window(game->mlx, game->win, img, posx, posy);
 }
+
+
+static void	sprite_characters(t_map *map, t_game *game, int posx, int posy)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->map_copy[i])
+	{
+		j = 0;
+		while (map->map_copy[i][j] && map->map_copy[i][j] != '\n')
+		{
+			if (map->map_copy[i][j] == 'P')
+				sprite_creator(game, "./textures/gogeta_wait.xpm", (posx + (j * 52)), (posy + (i * 52)));
+			else if (map->map_copy[i][j] == 'E')
+				sprite_creator(game, "./textures/gogeta_derecha_1.xpm", (posx + (j * 52)), (posy + (i * 52)));
+			else if (map->map_copy[i][j] == 'C')
+				sprite_creator(game, "./textures/gogeta_derecha_3.xpm", (posx + (j * 52)), (posy + (i * 52)));
+			else if (map->map_copy[i][j] == '1')
+				sprite_creator(game, "./textures/wall.xpm", (posx + (j * 52)), (posy + (i * 52)));
+			else if (map->map_copy[i][j] == '0')
+				sprite_creator(game, "./textures/suelo.xpm", (posx + (j * 52)), (posy + (i * 52)));
+			j++;
+		}
+		i++;
+	}
+}
+
+
 
 
 void	game_init(t_game *game, t_map *map, char *file)
 {
-	t_data	img;
-	
 	map_read(map, file);
 
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (map->map_w * 52), (map->map_h * 52), "Hello world!");
-	
-	
-	
-	img.img = mlx_new_image(game->mlx, 52, 52);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	my_mlx_pixel_put(&img, 20, 20, 0x00FF0000);
-	mlx_put_image_to_window(game->mlx, game->win, img.img, 0, 0);
+
+	// sprite_creator(game, "./textures/prueba.xpm", 0, 0);
+	sprite_characters(map, game, 0, 0);
 	mlx_loop(game->mlx);
-	
 }
+
+
+
+
+
+
+
+
+
+
 
 int main(int ac, char *av[])
 {	
@@ -67,20 +113,11 @@ int main(int ac, char *av[])
 	}
     else
 	{
-		// map_read(map, av[1]);
 		game_init(game, map, av[1]);
-		// void	*mlx;
-		// void	*mlx_win;
 
-		// mlx = mlx_init();
-		// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-		// mlx_loop(mlx);
-		// while (i < 2)
-		// {
-		// 	printf("%s", map->map_copy[i]);
-		// 	i++;
-			
-		// }
+
+
+		
 	}
     return (0);
 }
