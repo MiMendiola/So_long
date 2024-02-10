@@ -6,11 +6,11 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/08 19:52:49 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/10 16:11:08 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "./so_long.h"
 
 static void	map_ext(const char *str, const char *to_find)
 {
@@ -97,7 +97,8 @@ static void	map_characters(t_map *map)
 		}
 		i++;
 	}
-	if (map->player != 1 || map->exit != 1 || map->items == 0)
+	map->balls = map->items; 
+	if (map->player != 1 || map->exit != 1 || map->balls == 0 || map->balls > 7)
 		show_error("Characters invalid\n");
 }
 

@@ -14,7 +14,7 @@ RM = rm -f
 LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
-SRCS = $(addprefix ./src/, parse_map/map_parse.c main.c message.c)
+SRCS = $(addprefix ./src/, main.c map_parse.c sprite_creator.c message.c)
 
 OBJS = $(SRCS:.c=.o)
 
