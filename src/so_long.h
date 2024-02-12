@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/10 15:38:28 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:11:21 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_sprites
 
 typedef struct s_map
 {
-	char	**map_copy;
+	char	**map;
 	int		map_w;
 	int		map_h;
 	int		player;
@@ -82,13 +82,15 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
+	void		*mlx;
+	void		*win;
+	char		**map_check;
+	t_sprites	*ptr;
 }			t_game;
 
 void		map_read(t_map *map, char *file);
 void		sprite_characters(t_map *map, t_game *game);
 void		show_error(char *str);
+
 
 #endif

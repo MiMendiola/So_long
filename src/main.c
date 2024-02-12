@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/10 15:01:13 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/12 21:14:10 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	closete(int keycode, t_game *game)
 void	game_init(t_game *game, t_map *map, char *file)
 {
 	map_read(map, file);
+	game->ptr = malloc(sizeof(t_sprites)); 
+
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (map->map_w * 52), (map->map_h * 52),
 		"Goku Evolved");
@@ -52,20 +54,29 @@ void	game_init(t_game *game, t_map *map, char *file)
 	mlx_loop(game->mlx);
 }
 
+void ft_leaks()
+{
+	system("leaks -q so_long");
+}
+
 int	main(int ac, char *av[])
 {
 	t_map	*map;
 	t_game	*game;
 
-	map = malloc(sizeof(t_map));
-	game = malloc(sizeof(t_game));
+	//atexit(ft_leaks);
+	map = ft_calloc(1, sizeof(t_map));
+	game = ft_calloc(1, sizeof(t_game));
 	if (ac != 2)
 	{
 		show_error("Bad arguments\n");
 	}
 	else
 	{
-		game_init(game, map, av[1]);
+		 game_init(game, map, av[1]);
 	}
+	free(map->map);
+	free(map);
+	free(game);
 	return (0);
 }

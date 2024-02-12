@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/10 16:16:25 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:44:01 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 
 static  void	sprite_creator(t_game *game, char *path, int i, int j)
 {
-	t_sprites	*img;
 	int			posx;
 	int			posy;
 
-	img = malloc(sizeof(t_sprites));
-	img->path = path;
-	img->img_w = 52;
-	img->img_h = 52;
+	game->ptr->path = path;
+	game->ptr->img_w = 52;
+	game->ptr->img_h = 52;
 	posx = j * 52;
 	posy = i * 52;
-	img = mlx_xpm_file_to_image(game->mlx, img->path, &img->img_w, &img->img_h);
-	if (!img)
-	{
+	game->ptr->img = mlx_xpm_file_to_image(game->mlx, game->ptr->path, &game->ptr->img_w, &game->ptr->img_h);
+	if (!game->ptr->img)
 		show_error("Error loading image\n");
-		exit(1);
-	}
-	mlx_put_image_to_window(game->mlx, game->win, img, posx, posy);
+	mlx_put_image_to_window(game->mlx, game->win, game->ptr->img, posx, posy);
 }
 
 static void	sprite_floor(t_map *map, t_game *game)
@@ -39,10 +34,10 @@ static void	sprite_floor(t_map *map, t_game *game)
 	int	j;
 
 	i = 0;
-	while (map->map_copy[i])
+	while (map->map[i])
 	{
 		j = 0;
-		while (map->map_copy[i][j] && map->map_copy[i][j] != '\n')
+		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
 			sprite_creator(game, "./textures/suelo.xpm", i, j);
 			j++;
@@ -95,20 +90,20 @@ void	sprite_characters(t_map *map, t_game *game)
 
 	i = 0;
 	sprite_floor(map, game);
-	while (map->map_copy[i])
+	while (map->map[i])
 	{
 		j = 0;
-		while (map->map_copy[i][j] && map->map_copy[i][j] != '\n')
+		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
-			if (map->map_copy[i][j] == 'P')
+			if (map->map[i][j] == 'P')
 				sprite_creator(game, "./textures/gogeta_wait.xpm", i, j);
-			else if (map->map_copy[i][j] == 'E')
+			else if (map->map[i][j] == 'E')
 				sprite_exit(map, game, i, j);
-			else if (map->map_copy[i][j] == 'C')
+			else if (map->map[i][j] == 'C')
 				sprite_balls(map, game, i, j);
-			else if (map->map_copy[i][j] == '1')
+			else if (map->map[i][j] == '1')
 				sprite_creator(game, "./textures/wall.xpm", i, j);
-			else if (map->map_copy[i][j] == '0')
+			else if (map->map[i][j] == '0')
 				sprite_creator(game, "./textures/suelo.xpm", i, j);
 			j++;
 		}

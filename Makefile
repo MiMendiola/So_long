@@ -5,7 +5,7 @@ RED		=	\033[91;1m
 GREEN	=	\033[92;1m
 CLEAR	=	\033[0m
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 MLXFLAGS = -framework OpenGL -framework AppKit
 CC = cc
 AR = ar -crs
@@ -25,12 +25,7 @@ $(NAME) : $(OBJS)
 	@echo "$(GREEN)Compiling Libft.$(CLEAR)"
 	@make all -sC ./mlx
 	@echo "$(GREEN)Compiling Mlx.$(CLEAR)"
-
-
-
 	@$(CC) $(CFLAGS) $(OBJS) -I ./src/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME)
-
-
 	@echo "$(GREEN)So_long Compiled.$(CLEAR)"
 
 clean:
