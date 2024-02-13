@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/12 21:14:10 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:41:39 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,35 @@
 // #include "../libft_ext/get_next_line_utils.c"
 
 
-int	closete(int keycode, t_game *game)
+int	key_press(int keycode, t_game *game, t_map *map)
 {
-	if (keycode == 53)
+	map = NULL;
+	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
-		exit (EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	}
+	else if (keycode == KEY_W || keycode == KEY_UP)
+		move_player_up(game);
+	else if (keycode == KEY_A || keycode == KEY_LEFT)
+		move_player_left(game);
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
+		move_player_down(game);
+	else if (keycode == KEY_D || keycode == KEY_RIGHT)
+		move_player_right(game);
 	return (0);
+}
+
+int	close_cross(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(EXIT_SUCCESS);
 }
 
 void	game_init(t_game *game, t_map *map, char *file)
 {
-	map_read(map, file);
+	map_read(map, game, file);
+	check_player(game);
 	game->ptr = malloc(sizeof(t_sprites)); 
 
 	game->mlx = mlx_init();
@@ -49,9 +65,39 @@ void	game_init(t_game *game, t_map *map, char *file)
 		"Goku Evolved");
 	
 	sprite_characters(map, game);
-	//mlx_hook(game->win, ON_DESTROY, 0, closete, &game->win);
-	mlx_key_hook(game->win, closete, game);
+	printf("%d\n", game->player.posx);
+	printf("%d\n", game->player.posy);
+	mlx_hook(game->win, ON_DESTROY, 0, close_cross, game);
+	mlx_key_hook(game->win, key_press, game);
 	mlx_loop(game->mlx);
+}
+
+void	move_player_up(t_game *game)
+{
+	printf("W o Arrow up, Posicion: ");
+	game->player.posy--;
+	printf("%d\n", game->player.posy);
+}
+
+void	move_player_down(t_game *game)
+{
+	printf("S o Arrow down, Posicion: ");
+	game->player.posy++;
+	printf("%d\n", game->player.posy);
+}
+
+void	move_player_left(t_game *game)
+{
+	printf("A o Arrow left, Posicion: ");
+	game->player.posx--;
+	printf("%d\n", game->player.posx);
+}
+
+void	move_player_right(t_game *game)
+{
+	printf("D o Arrow right, Posicion: ");
+	game->player.posx++;
+	printf("%d\n", game->player.posx);
 }
 
 void ft_leaks()
@@ -73,7 +119,8 @@ int	main(int ac, char *av[])
 	}
 	else
 	{
-		 game_init(game, map, av[1]);
+		game_init(game, map, av[1]);
+		 
 	}
 	free(map->map);
 	free(map);

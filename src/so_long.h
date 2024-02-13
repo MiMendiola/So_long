@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/12 21:11:21 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/13 20:39:08 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,34 @@
 # define KEY_LEFT 123
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
+# define ON_DESTROY 17
+
+typedef struct s_player
+{
+	int			posx;
+	int			posy;
+	int			steps;
+}				t_player;
 
 typedef struct s_sprites
 {
-	void	*img;
-	char	*path;
-	int		img_w;
-	int		img_h;
-}			t_sprites;
+	void		*img;
+	char		*path;
+	int			img_w;
+	int			img_h;
+}				t_sprites;
 
 typedef struct s_map
 {
-	char	**map;
-	int		map_w;
-	int		map_h;
-	int		player;
-	int		exit;
-	int		items;
-	int		balls;
-}			t_map;
+	char		**map;
+	int			map_w;
+	int			map_h;
+	int			main_char;
+	int			exit;
+	int			items;
+	int			balls;
+	t_player	player;
+}				t_map;
 
 typedef struct s_game
 {
@@ -86,11 +95,25 @@ typedef struct s_game
 	void		*win;
 	char		**map_check;
 	t_sprites	*ptr;
-}			t_game;
+	t_player	player;
+}				t_game;
 
-void		map_read(t_map *map, char *file);
-void		sprite_characters(t_map *map, t_game *game);
-void		show_error(char *str);
+// MAP FUNCTIONS
+void			map_read(t_map *map, t_game *game, char *file);
+char			*map_copy(t_map *map, int fd);
 
+void	check_player(t_game *game);
+
+
+void	move_player_up(t_game *game);
+void	move_player_down(t_game *game);
+void	move_player_left(t_game *game);
+void	move_player_right(t_game *game);
+
+// SPRITE FUNCTIONS
+void			sprite_characters(t_map *map, t_game *game);
+
+// MENSSAGE FUNCTIONS
+void			show_error(char *str);
 
 #endif
