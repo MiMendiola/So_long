@@ -6,13 +6,13 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/12 20:44:01 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:39:27 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
 
-static  void	sprite_creator(t_game *game, char *path, int i, int j)
+void	sprite_creator(t_game *game, char *path, int i, int j)
 {
 	int			posx;
 	int			posy;

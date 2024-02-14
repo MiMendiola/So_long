@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/13 20:39:08 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:40:55 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ void	move_player_up(t_game *game);
 void	move_player_down(t_game *game);
 void	move_player_left(t_game *game);
 void	move_player_right(t_game *game);
+void	sprite_creator(t_game *game, char *path, int i, int j);
+
+
 
 // SPRITE FUNCTIONS
 void			sprite_characters(t_map *map, t_game *game);

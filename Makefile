@@ -5,7 +5,7 @@ RED		=	\033[91;1m
 GREEN	=	\033[92;1m
 CLEAR	=	\033[0m
 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra 
 MLXFLAGS = -framework OpenGL -framework AppKit
 CC = cc
 AR = ar -crs
