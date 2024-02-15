@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/13 19:14:54 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:40:32 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static	void	map_borders(t_map *map)
 	}
 }
 
-static	void	map_characters(t_map *map)
+static	void	map_characters(t_map *map, t_game *game)
 {
 	int	i;
 	int	j;
@@ -104,7 +104,9 @@ static	void	map_characters(t_map *map)
 		}
 		i++;
 	}
-	map->balls = map->items; 
+	map->balls = map->items;
+	game->items = map->items;
+	game->balls = map->items;
 	if (map->main_char != 1 || map->exit != 1 || map->balls == 0 || map->balls > 7)
 		show_error("Characters invalid\n");
 }
@@ -124,6 +126,6 @@ void	map_read(t_map *map, t_game *game, char *file)
 	game->map_check = ft_split(cmap, '\n');
 	free(cmap);
 	map_borders(map);
-	map_characters(map);
+	map_characters(map, game);
 	close(fd);
 }

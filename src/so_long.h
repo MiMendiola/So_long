@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/14 12:40:55 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:21:09 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define PIXELS 64
 
 // SETTINGS COLORS
 # define BLACK "\x1B[30m"
@@ -62,6 +64,9 @@
 # define KEY_RIGHT 124
 # define ON_DESTROY 17
 
+// DEFINES
+# define ERROR_LOADING_IMG "Error loading image\n"
+
 typedef struct s_player
 {
 	int			posx;
@@ -89,11 +94,21 @@ typedef struct s_map
 	t_player	player;
 }				t_map;
 
+// typedef struct s_vector_2D
+// {
+// 	float	x;
+// 	float	y;
+// }	t_vector_2D;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	char		**map_check;
+	int			items;
+	int			balls;
+	int			posxmap;
+	int			posymap;
 	t_sprites	*ptr;
 	t_player	player;
 }				t_game;
@@ -102,16 +117,15 @@ typedef struct s_game
 void			map_read(t_map *map, t_game *game, char *file);
 char			*map_copy(t_map *map, int fd);
 
-void	check_player(t_game *game);
+void			check_exit(t_game *game);
+void			check_player(t_game *game);
+void			sprite_exit(t_game *game, int i, int j);
 
-
-void	move_player_up(t_game *game);
-void	move_player_down(t_game *game);
-void	move_player_left(t_game *game);
-void	move_player_right(t_game *game);
-void	sprite_creator(t_game *game, char *path, int i, int j);
-
-
+void			move_player_up(t_game *game);
+void			move_player_down(t_game *game);
+void			move_player_left(t_game *game);
+void			move_player_right(t_game *game);
+void			sprite_creator(t_game *game, char *path, int i, int j);
 
 // SPRITE FUNCTIONS
 void			sprite_characters(t_map *map, t_game *game);

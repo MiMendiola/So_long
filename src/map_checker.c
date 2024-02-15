@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:35:28 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/13 20:32:30 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/15 15:08:57 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,27 @@ void	check_player(t_game *game)
 			{
 				game->player.posx = j;
 				game->player.posy = i;
+			}
+		}
+	}
+}
+
+void	check_exit(t_game *game)
+{
+	int i;
+	int j;
+
+	i = -1;
+	game->player.steps = 0;
+	while (game->map_check[++i])
+	{
+		j = -1;
+		while (game->map_check[i][++j])
+		{
+			if (game->map_check[i][j] == 'E')
+			{
+				game->posxmap = j;
+				game->posymap = i;
 			}
 		}
 	}

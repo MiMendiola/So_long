@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/14 12:44:29 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:56:26 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 // #include "../libft_ext/get_next_line.c"
 // #include "../libft_ext/get_next_line_utils.c"
 
-int	key_press(int keycode, t_game *game, t_map *map)
+int	key_press(int keycode, t_game *game)
 {
-	map = NULL;
+	char	*moves;
+	
+	moves = ft_itoa(game->player.steps);
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
@@ -44,6 +46,9 @@ int	key_press(int keycode, t_game *game, t_map *map)
 		move_player_down(game);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		move_player_right(game);
+	sprite_creator(game, "./textures/wall.xpm", 0, 0);
+	mlx_string_put(game->mlx, game->win, 32, 32, 0xFFFFFF, moves);
+	free(moves);
 	return (0);
 }
 
@@ -57,66 +62,17 @@ void	game_init(t_game *game, t_map *map, char *file)
 {
 	map_read(map, game, file);
 	check_player(game);
+	check_exit(game);
 	game->ptr = malloc(sizeof(t_sprites));
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, (map->map_w * 52), (map->map_h * 52),
-		"Goku Evolved");
+	game->win = mlx_new_window(game->mlx, (map->map_w * PIXELS), (map->map_h
+			* PIXELS), "Goku Evolved");
 	sprite_characters(map, game);
-	printf("%d\n", game->player.posx);
-	printf("%d\n", game->player.posy);
 	mlx_hook(game->win, ON_DESTROY, 0, close_cross, game);
+	mlx_string_put(game->mlx, game->win, 10, 32, 0xFFFFFF, "Mv:");
+	mlx_string_put(game->mlx, game->win, 32, 32, 0xFFFFFF, "0");
 	mlx_key_hook(game->win, key_press, game);
 	mlx_loop(game->mlx);
-}
-
-void	move_player_up(t_game *game)
-{
-	if (game->map_check[game->player.posx][game->player.posy - 1] != '1')
-	{
-		game->player.posy--;
-		printf("W o Arrow up, Posicion: ");
-		printf("%d\n", game->player.posy);
-	}
-}
-
-void	move_player_down(t_game *game)
-{
-	if (game->map_check[game->player.posx][game->player.posy + 1] != '1')
-	{
-		game->player.posy++;
-		printf("S o Arrow down, Posicion: ");
-		printf("%d\n", game->player.posy);
-	}
-	else
-		ft_putendl_fd("Tu madre", 2);
-}
-
-void	move_player_left(t_game *game)
-{
-	if (game->map_check[game->player.posx - 1][game->player.posy] != '1')
-	{
-		game->player.posx--;
-		printf("A o Arrow left, Posicion: ");
-		printf("%d\n", game->player.posx);
-	}
-}
-
-void	move_player_right(t_game *game)
-{
-	int	posx;
-	int	posy;
-
-	posx = game->player.posx;
-	posy = game->player.posy;
-	if (game->map_check[posx + 1][posy] != '1')
-	{
-		game->map_check[posx][posy] = '0';
-		game->map_check[posx + 1][posy] = 'P';
-		game->player.posx++;
-		sprite_creator(game, "/Users/mmendiol/Documents/So_long_GIT/textures/gogeta_wait.xpm", game->player.posx * 52, posy * 52);
-		printf("D o Arrow right, Posicion: ");
-		printf("%d\n", game->player.posx);
-	}
 }
 
 void	ft_leaks(void)
@@ -129,7 +85,7 @@ int	main(int ac, char *av[])
 	t_map	*map;
 	t_game	*game;
 
-	// atexit(ft_leaks);
+	atexit(ft_leaks);
 	map = ft_calloc(1, sizeof(t_map));
 	game = ft_calloc(1, sizeof(t_game));
 	if (ac != 2)
