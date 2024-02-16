@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/15 17:40:32 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:08:19 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	void	map_ext(const char *str, const char *to_find)
 		}
 		i++;
 	}
-	show_error("Please, check the map extension\n");
+	show_error(ERROR_EXTENSION_MAP);
 }
 
 static	void	map_dimensions(t_map *map, char *file)
@@ -41,7 +41,7 @@ static	void	map_dimensions(t_map *map, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		show_error("File error\n");
+		show_error(ERROR_FILE);
 	line = get_next_line(fd);
 	width = ft_strlen(line) - 1;
 	free(line);
@@ -74,7 +74,7 @@ static	void	map_borders(t_map *map)
 			if ((map->map[0][j] != '1') || (map->map[map->map_h
 					- 1][j] != '1') || (map->map[i][0] != '1')
 				|| (map->map[i][map->map_w - 1] != '1'))
-				show_error("Map not surrounded by walls\n");
+				show_error(ERROR_NOT_WALLS);
 			j++;
 		}
 		i++;
@@ -99,7 +99,7 @@ static	void	map_characters(t_map *map, t_game *game)
 			else if (map->map[i][j] == 'C')
 				map->items += 1;
 			else if (map->map[i][j] != '1' && map->map[i][j] != '0')
-				show_error("Some elements are incorrect\n");
+				show_error(ERROR_MAP_ELEMENTS);
 			j++;
 		}
 		i++;
@@ -108,7 +108,7 @@ static	void	map_characters(t_map *map, t_game *game)
 	game->items = map->items;
 	game->balls = map->items;
 	if (map->main_char != 1 || map->exit != 1 || map->balls == 0 || map->balls > 7)
-		show_error("Characters invalid\n");
+		show_error(ERROR_CHARACTERS_NOT_VALID);
 }
 
 void	map_read(t_map *map, t_game *game, char *file)
@@ -119,7 +119,7 @@ void	map_read(t_map *map, t_game *game, char *file)
 	map_ext(file, ".ber");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		show_error("File error\n");
+		show_error(ERROR_FILE);
 	map_dimensions(map, file);
 	cmap = map_copy(map, fd);
 	map->map = ft_split(cmap, '\n');
@@ -127,5 +127,7 @@ void	map_read(t_map *map, t_game *game, char *file)
 	free(cmap);
 	map_borders(map);
 	map_characters(map, game);
+	check_player(game);
+	check_exit(game);
 	close(fd);
 }

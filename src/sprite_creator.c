@@ -6,11 +6,48 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/15 18:31:14 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:21:32 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
+
+static void	sprite_floor(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map_check[i])
+	{
+		j = 0;
+		while (game->map_check[i][j] && game->map_check[i][j] != '\n')
+		{
+			sprite_creator(game, FLOOR, i, j);
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	sprite_balls(t_map *map, t_game *game, int i, int j)
+{
+	if (map->items == 1)
+		sprite_creator(game, BALL1, i, j);
+	else if (map->items == 2)
+		sprite_creator(game, BALL2, i, j);
+	else if (map->items == 3)
+		sprite_creator(game, BALL3, i, j);
+	else if (map->items == 4)
+		sprite_creator(game, BALL4, i, j);
+	else if (map->items == 5)
+		sprite_creator(game, BALL5, i, j);
+	else if (map->items == 6)
+		sprite_creator(game, BALL6, i, j);
+	else if (map->items == 7)
+		sprite_creator(game, BALL7, i, j);
+	map->items--;
+}
 
 void	sprite_creator(t_game *game, char *path, int i, int j)
 {
@@ -28,60 +65,22 @@ void	sprite_creator(t_game *game, char *path, int i, int j)
 	mlx_put_image_to_window(game->mlx, game->win, game->ptr->img, posx, posy);
 }
 
-static void	sprite_floor(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map_check[i])
-	{
-		j = 0;
-		while (game->map_check[i][j] && game->map_check[i][j] != '\n')
-		{
-			sprite_creator(game, "./textures/suelo.xpm", i, j);
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	sprite_balls(t_map *map, t_game *game, int i, int j)
-{
-	if (map->items == 1)
-		sprite_creator(game, "./textures/balls/ball1.xpm", i, j);
-	else if (map->items == 2)
-		sprite_creator(game, "./textures/balls/ball2.xpm", i, j);
-	else if (map->items == 3)
-		sprite_creator(game, "./textures/balls/ball3.xpm", i, j);
-	else if (map->items == 4)
-		sprite_creator(game, "./textures/balls/ball4.xpm", i, j);
-	else if (map->items == 5)
-		sprite_creator(game, "./textures/balls/ball5.xpm", i, j);
-	else if (map->items == 6)
-		sprite_creator(game, "./textures/balls/ball6.xpm", i, j);
-	else if (map->items == 7)
-		sprite_creator(game, "./textures/balls/ball7.xpm", i, j);
-	map->items--;
-}
-
 void	sprite_exit(t_game *game, int i, int j)
 {
-	printf("%d\n", game->items);
 	if (game->balls == 1)
-		sprite_creator(game, "./textures/balls/ball1.xpm", i, j);
+		sprite_creator(game, BALL1, i, j);
 	else if (game->balls == 2)
-		sprite_creator(game, "./textures/exit/exit2.xpm", i, j);
+		sprite_creator(game, EXIT2, i, j);
 	else if (game->balls == 3)
-		sprite_creator(game, "./textures/exit/exit3.xpm", i, j);
+		sprite_creator(game, EXIT3, i, j);
 	else if (game->balls == 4)
-		sprite_creator(game, "./textures/exit/exit4.xpm", i, j);
+		sprite_creator(game, EXIT4, i, j);
 	else if (game->balls == 5)
-		sprite_creator(game, "./textures/exit/exit5.xpm", i, j);
+		sprite_creator(game, EXIT5, i, j);
 	else if (game->balls == 6)
-		sprite_creator(game, "./textures/exit/exit6.xpm", i, j);
+		sprite_creator(game, EXIT6, i, j);
 	else if (game->balls == 7)
-		sprite_creator(game, "./textures/exit/exit7.xpm", i, j);
+		sprite_creator(game, EXIT7, i, j);
 }
 
 void	sprite_characters(t_map *map, t_game *game)
@@ -97,15 +96,11 @@ void	sprite_characters(t_map *map, t_game *game)
 		while (game->map_check[i][j] && game->map_check[i][j] != '\n')
 		{
 			if (game->map_check[i][j] == 'P')
-				sprite_creator(game, "./textures/goku_base/goku_base.xpm", i, j);
-			// else if (game->map_check[i][j] == 'E')
-			// 	sprite_exit(map, game, i, j);
+				sprite_creator(game, GOKUBASE, i, j);
 			else if (game->map_check[i][j] == 'C')
 				sprite_balls(map, game, i, j);
 			else if (game->map_check[i][j] == '1')
-				sprite_creator(game, "./textures/wall.xpm", i, j);
-			// else if (game->map_check[i][j] == '0')
-			// 	sprite_creator(game, "./textures/suelo.xpm", i, j);
+				sprite_creator(game, WALLS, i, j);
 			j++;
 		}
 		i++;

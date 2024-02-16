@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/15 18:56:26 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:11:04 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	key_press(int keycode, t_game *game)
 {
 	char	*moves;
 	
-	moves = ft_itoa(game->player.steps);
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
@@ -46,8 +45,9 @@ int	key_press(int keycode, t_game *game)
 		move_player_down(game);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		move_player_right(game);
-	sprite_creator(game, "./textures/wall.xpm", 0, 0);
-	mlx_string_put(game->mlx, game->win, 32, 32, 0xFFFFFF, moves);
+	moves = ft_itoa(game->steps);
+	sprite_creator(game, WALLS, 0, 1);
+	mlx_string_put(game->mlx, game->win, 75, 20, 0xFFFFFF, moves);
 	free(moves);
 	return (0);
 }
@@ -58,19 +58,17 @@ int	close_cross(/* t_game *game */)
 	exit(EXIT_SUCCESS);
 }
 
-void	game_init(t_game *game, t_map *map, char *file)
+static	void	game_init(t_game *game, t_map *map)
 {
-	map_read(map, game, file);
-	check_player(game);
-	check_exit(game);
+	// check_player(game);
+	// check_exit(game);
 	game->ptr = malloc(sizeof(t_sprites));
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (map->map_w * PIXELS), (map->map_h
 			* PIXELS), "Goku Evolved");
 	sprite_characters(map, game);
 	mlx_hook(game->win, ON_DESTROY, 0, close_cross, game);
-	mlx_string_put(game->mlx, game->win, 10, 32, 0xFFFFFF, "Mv:");
-	mlx_string_put(game->mlx, game->win, 32, 32, 0xFFFFFF, "0");
+	mlx_string_put(game->mlx, game->win, 30, 20, 0xFFFFFF, "Mv:");
 	mlx_key_hook(game->win, key_press, game);
 	mlx_loop(game->mlx);
 }
@@ -94,7 +92,8 @@ int	main(int ac, char *av[])
 	}
 	else
 	{
-		game_init(game, map, av[1]);
+		map_read(map, game, av[1]);
+		game_init(game, map);
 	}
 	free(map->map);
 	free(map);
