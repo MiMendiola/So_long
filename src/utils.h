@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:33:55 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/16 15:16:20 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:00:24 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 // IMAGES PATH
 #define WALLS "./textures/floors&walls/wall.xpm"
-#define FLOOR "./textures/floors&walls/floor 2.xpm"
+#define FLOOR "./textures/floors&walls/floor 1.xpm"
 
 #define BALL1 "./textures/balls/1.xpm"
 #define BALL2 "./textures/balls/2.xpm"
@@ -59,6 +59,26 @@
 #define EXIT7 "./textures/exit/exit7.xpm"
 
 #define GOKUBASE "./textures/goku_base/0.xpm"
+#define GOKUBASE1 "./textures/goku_base/1.xpm"
+#define GOKUBASE2 "./textures/goku_base/2.xpm"
+#define GOKUBASE3 "./textures/goku_base/goku_base.xpm"
+#define GOKUBASE4 "./textures/goku_base/4.xpm"
+#define GOKUBASE5 "./textures/goku_base/5.xpm"
+#define GOKUBASE6 "./textures/goku_base/6.xpm"
+#define GOKUBASE7 "./textures/goku_base/7.xpm"
+#define GOKUBASE8 "./textures/goku_base/8.xpm"
+#define GOKUBASE9 "./textures/goku_base/9.xpm"
+#define GOKUBASE10 "./textures/goku_base/10.xpm"
+#define GOKUBASE11 "./textures/goku_base/11.xpm"
+#define GOKUBASE12 "./textures/goku_base/12.xpm"
+#define GOKUBASE13 "./textures/goku_base/13.xpm"
+#define GOKUBASE14 "./textures/goku_base/14.xpm"
+#define GOKUBASE15 "./textures/goku_base/15.xpm"
+
+#define GOKUN	0
+#define GOKUS1	1
+#define GOKUS2	2
+#define GOKUS3	3
 
 // SETTINGS COLORS
 #define BLACK "\x1B[30m"

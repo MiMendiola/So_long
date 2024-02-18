@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/16 15:21:32 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:17:10 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ void	sprite_creator(t_game *game, char *path, int i, int j)
 	int			posx;
 	int			posy;
 
-	game->ptr->path = path;
-	game->ptr->img_w = PIXELS;
-	game->ptr->img_h = PIXELS;
+	game->image->path = path;
+	game->image->img_w = PIXELS;
+	game->image->img_h = PIXELS;
 	posx = j * PIXELS;
 	posy = i * PIXELS;
-	game->ptr->img = mlx_xpm_file_to_image(game->mlx, game->ptr->path, &game->ptr->img_w, &game->ptr->img_h);
-	if (!game->ptr->img)
+	game->image->img = mlx_xpm_file_to_image(game->mlx, game->image->path, &game->image->img_w, &game->image->img_h);
+	if (!game->image->img)
 		show_error(ERROR_LOADING_IMG);
-	mlx_put_image_to_window(game->mlx, game->win, game->ptr->img, posx, posy);
+	mlx_put_image_to_window(game->mlx, game->win, game->image->img, posx, posy);
 }
 
 void	sprite_exit(t_game *game, int i, int j)
@@ -96,7 +96,7 @@ void	sprite_characters(t_map *map, t_game *game)
 		while (game->map_check[i][j] && game->map_check[i][j] != '\n')
 		{
 			if (game->map_check[i][j] == 'P')
-				sprite_creator(game, GOKUBASE, i, j);
+				sprite_creator(game, GOKUBASE3, i, j);
 			else if (game->map_check[i][j] == 'C')
 				sprite_balls(map, game, i, j);
 			else if (game->map_check[i][j] == '1')
@@ -105,4 +105,43 @@ void	sprite_characters(t_map *map, t_game *game)
 		}
 		i++;
 	}
+}
+
+void	sprite_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	sprite_floor(game);
+	while (game->map_check[i])
+	{
+		j = 0;
+		while (game->map_check[i][j] && game->map_check[i][j] != '\n')
+		{
+			if (game->map_check[i][j] == '1')
+				sprite_creator(game, WALLS, i, j);
+			else if (game->map_check[i][j] == 'C')
+				sprite_creator(game, BALL1, i, j);
+			// else if (game->map_check[i][j] == 'P')
+			// 	sprite_creator(game, GOKUBASE3, i, j);
+				// frames_stay(game, i, j);
+			j++;
+		}
+		i++;
+	}
+	if (game->items == 0)
+	{
+		game->map_check[game->exitY][game->exitX] = 'E';
+		sprite_exit(game, game->exitY, game->exitX);
+	}
+}
+
+void	sprite_player(t_game *game)
+{
+	if (game->flags.first_animation == 0)
+		frames_first_animation(game);
+	else
+		// sprite_creator(game, GOKUBASE3, game->player.posy, game->player.posx);
+		frames_stay(game, game->player.posy, game->player.posx);
 }

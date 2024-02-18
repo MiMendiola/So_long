@@ -5,7 +5,7 @@ RED		=	\033[91;1m
 GREEN	=	\033[92;1m
 CLEAR	=	\033[0m
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra
 MLXFLAGS = -framework OpenGL -framework AppKit
 CC = cc
 AR = ar -crs
@@ -14,7 +14,8 @@ RM = rm -f
 LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
-SRCS = $(addprefix ./src/, main.c map_checker.c map_read.c movements.c sprite_creator.c message.c)
+SRCS = $(addprefix ./src/, main.c map_checker.c map_read.c movements.c \
+		frames_charger.c sprite_creator.c sprite_covers.c message.c)
 
 OBJS = $(SRCS:.c=.o)
 

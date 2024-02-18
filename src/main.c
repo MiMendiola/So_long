@@ -6,32 +6,14 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/16 15:11:04 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:16:32 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./so_long.h"
 
-// #include "./message.c"
-// #include "../libft_ext/libft.h"
-// #include "../libft_ext/ft_putstr_fd.c"
-// #include "../libft_ext/ft_strjoin.c"
-// #include "../libft_ext/ft_memcpy.c"
-// #include "../libft_ext/ft_calloc.c"
-// #include "../libft_ext/ft_strlen.c"
-// #include "../libft_ext/ft_strtrim.c"
-// #include "../libft_ext/ft_strdup.c"
-// #include "../libft_ext/ft_strchr.c"
-// #include "../libft_ext/ft_substr.c"
-// #include "../libft_ext/ft_bzero.c"
-// #include "../libft_ext/ft_memset.c"
-// #include "../libft_ext/get_next_line.c"
-// #include "../libft_ext/get_next_line_utils.c"
-
 int	key_press(int keycode, t_game *game)
 {
-	char	*moves;
-	
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
@@ -45,31 +27,45 @@ int	key_press(int keycode, t_game *game)
 		move_player_down(game);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		move_player_right(game);
-	moves = ft_itoa(game->steps);
-	sprite_creator(game, WALLS, 0, 1);
-	mlx_string_put(game->mlx, game->win, 75, 20, 0xFFFFFF, moves);
-	free(moves);
 	return (0);
 }
 
-int	close_cross(/* t_game *game */)
+int	close_cross(t_game *game)
 {
-	// mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
 	exit(EXIT_SUCCESS);
+}
+
+int	frames_counter(t_game *game)
+{
+	game->frames++;
+	if (game->frames >= 30)
+	{
+		game->frames = 0;
+		game->flags.first_animation = 1;
+	}
+	return (0);
+}
+
+int		frame_executor(t_game *game)
+{
+	sprite_map(game);
+	sprite_player(game);
+	show_moves(game);
+	frames_counter(game);
+	return (0);
 }
 
 static	void	game_init(t_game *game, t_map *map)
 {
-	// check_player(game);
-	// check_exit(game);
-	game->ptr = malloc(sizeof(t_sprites));
+	game->image = malloc(sizeof(t_sprites));
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (map->map_w * PIXELS), (map->map_h
 			* PIXELS), "Goku Evolved");
-	sprite_characters(map, game);
+	// sprite_characters(map, game);
 	mlx_hook(game->win, ON_DESTROY, 0, close_cross, game);
-	mlx_string_put(game->mlx, game->win, 30, 20, 0xFFFFFF, "Mv:");
 	mlx_key_hook(game->win, key_press, game);
+	mlx_loop_hook(game->mlx, frame_executor, game);
 	mlx_loop(game->mlx);
 }
 

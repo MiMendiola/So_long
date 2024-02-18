@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/16 15:08:19 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:49:50 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,5 @@ void	map_read(t_map *map, t_game *game, char *file)
 	map_borders(map);
 	map_characters(map, game);
 	check_player(game);
-	check_exit(game);
 	close(fd);
 }
