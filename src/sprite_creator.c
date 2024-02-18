@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/18 22:17:10 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:18:56 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ void	sprite_player(t_game *game)
 	if (game->flags.first_animation == 0)
 		frames_first_animation(game);
 	else
-		// sprite_creator(game, GOKUBASE3, game->player.posy, game->player.posx);
-		frames_stay(game, game->player.posy, game->player.posx);
+		sprite_creator(game, GOKUBASE3, game->player.posy, game->player.posx);
+		// frames_stay(game, game->player.posy, game->player.posx);
 }
