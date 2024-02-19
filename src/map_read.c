@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/18 21:49:50 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:35:05 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ static	void	map_characters(t_map *map, t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map->map[i])
+	i = -1;
+	while (map->map[++i])
 	{
-		j = 0;
-		while (map->map[i][j] && map->map[i][j] != '\n')
+		j = -1;
+		while (map->map[i][++j])
 		{
 			if (map->map[i][j] == 'P')
 				map->main_char += 1;
@@ -100,9 +100,7 @@ static	void	map_characters(t_map *map, t_game *game)
 				map->items += 1;
 			else if (map->map[i][j] != '1' && map->map[i][j] != '0')
 				show_error(ERROR_MAP_ELEMENTS);
-			j++;
 		}
-		i++;
 	}
 	map->balls = map->items;
 	game->items = map->items;

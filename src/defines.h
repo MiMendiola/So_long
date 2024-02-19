@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:33:55 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/18 16:00:24 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:27:55 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// IMAGE SIZE
+/* ================= IMAGE SIZE ================== */
 #define PIXELS 64
 
-// SETTINGS KEYS
+/* ================ SETTINGS KEYS ================ */
 #define KEY_ESC 53
 #define KEY_W 13
 #define KEY_A 0
@@ -25,9 +25,9 @@
 #define KEY_RIGHT 124
 #define ON_DESTROY 17
 
-// ERRORS MESSAGES
+/* ================== MESSAGES =================== */
 #define WINS "\nGOKU ALWAYS WINS!\n\n"
-#define LOSE "YOU ARE NOT A TRUE HERO"
+#define LOSE "\nYOU ARE NOT A TRUE HERO\n\n"
 
 #define ERROR_LOADING_IMG "Error loading image\n"
 #define ERROR_EXTENSION_MAP "Please, check the map extension\n"
@@ -38,10 +38,11 @@
 #define ERROR_MAP_ELEMENTS "Some elements are incorrect\n"
 #define ERROR_CHARACTERS_NOT_VALID "Characters invalid\n"
 
-// IMAGES PATH
+/* ================= IMAGES PATH ================= */
 #define WALLS "./textures/floors&walls/wall.xpm"
 #define FLOOR "./textures/floors&walls/floor 1.xpm"
 
+/* ================ BALLS & EXITS ================ */
 #define BALL1 "./textures/balls/1.xpm"
 #define BALL2 "./textures/balls/2.xpm"
 #define BALL3 "./textures/balls/3.xpm"
@@ -58,10 +59,11 @@
 #define EXIT6 "./textures/exit/exit6.xpm"
 #define EXIT7 "./textures/exit/exit7.xpm"
 
-#define GOKUBASE "./textures/goku_base/0.xpm"
-#define GOKUBASE1 "./textures/goku_base/1.xpm"
-#define GOKUBASE2 "./textures/goku_base/2.xpm"
-#define GOKUBASE3 "./textures/goku_base/goku_base.xpm"
+/* =================== GOKUS ===================== */
+#define GOKUBASE "./textures/goku_base/goku_base.xpm"
+#define GOKUBASE1 "./textures/goku_base/0.xpm"
+#define GOKUBASE2 "./textures/goku_base/1.xpm"
+#define GOKUBASE3 "./textures/goku_base/2.xpm"
 #define GOKUBASE4 "./textures/goku_base/4.xpm"
 #define GOKUBASE5 "./textures/goku_base/5.xpm"
 #define GOKUBASE6 "./textures/goku_base/6.xpm"
@@ -80,7 +82,7 @@
 #define GOKUS2	2
 #define GOKUS3	3
 
-// SETTINGS COLORS
+/* ============== SETTINGS COLORS ================ */
 #define BLACK "\x1B[30m"
 #define RED "\x1b[31m"
 #define GREEN "\x1b[32m"
@@ -96,7 +98,7 @@
 #define GRAY "\x1B[38;2;176;174;174m"
 #define CLEAR "\x1b[0m"
 
-// SETTINGS BACKGROUND COLORS
+/* ======== SETTINGS BACKGROUND COLORS ========== */
 #define BG_BLACK "\x1B[40m"
 #define BG_RED "\x1B[41m"
 #define BG_GREEN "\x1B[42m"
