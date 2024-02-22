@@ -6,22 +6,23 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 14:35:06 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/19 16:41:03 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:50:37 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./so_long.h"
+#include "../includes/so_long.h"
 
-// void    sprite_covers(t_game *game, t_map *map)
-// {
-//     int x;
-//     int y;
-    
-//     x = map->map_w / 2;
-//     y = map->map_h / 2;
-//     mlx_clear_window(game->mlx, game->win);
-//     if (game->flags.evolution == GOKUN)
-//     {
-//         mlx_put_image_to_window(game->mlx, game->win, WALLS, x * PIXELS, y * PIXELS);
-//     }
-// }
+void	sprite_covers(t_game *game, int posx)
+{
+	int	x;
+	int	y;
+
+	x = (ft_strlen(game->map_check[0]) / 2 - 1);
+	y = 0;
+	while (game->map_check[y])
+		y++;
+	y = (y / 2) - 1;
+	mlx_clear_window(game->mlx, game->win);
+	mlx_put_image_to_window(game->mlx, game->win, game->inits->cv1, posx
+		* (PIXELS * 3.62), y * PIXELS);
+}

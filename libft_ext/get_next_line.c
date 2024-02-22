@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:28 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/03 17:01:55 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:03:54 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	relocate_line(char **str_static, char **front)
 	if (!*front)
 		return ;
 	back = *str_static;
-	*str_static = ft_substr_gnl(*str_static, i, (ft_strlen_gnl(*str_static) - i));
+	*str_static = ft_substr_gnl(*str_static, i, (ft_strlen_gnl(*str_static)
+				- i));
 	free(back);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:35:28 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 16:52:43 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:50:37 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	map_collect(t_map *map)
 
 static void	map_floodfill_path(t_map *map, int x, int y)
 {
-	if (map->map[x][y] == '1' || map->map[x][y] == ' ')
+	if (map->map[x][y] == '1' || map->map[x][y] == ' ' || map->map[x][y] == 'B')
 		return ;
 	map->map[x][y] = ' ';
 	map_floodfill_path(map, x, y + 1);

@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:37 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 20:24:24 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ static void	generate_sprites_gokubase(t_game *game)
 	game->inits->gk11 = load_image(game, GOKUBASE11);
 	game->inits->gk12 = load_image(game, GOKUBASE12);
 	game->inits->gk13 = load_image(game, GOKUBASE13);
-	game->inits->gk14 = load_image(game, GOKUBASE14);
 	game->inits->gk15 = load_image(game, GOKUBASE15);
+	game->inits->gk16 = load_image(game, GOKUBASE16);
+	game->inits->gk17 = load_image(game, GOKUBASE17);
+	game->inits->gk18 = load_image(game, GOKUBASE18);
 }
 
 static void	generate_sprites_objs(t_game *game)

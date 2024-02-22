@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:33:55 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/19 19:27:55 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:15:34 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@
 #define KEY_RIGHT 124
 #define ON_DESTROY 17
 
+/* ================= DIRECTIONS ================== */
+#define STAY 0
+#define UP 1
+#define DOWN 2
+#define LEFT 3
+#define RIGHT 4
+
 /* ================== MESSAGES =================== */
-#define WINS "\nGOKU ALWAYS WINS!\n\n"
-#define LOSE "\nYOU ARE NOT A TRUE HERO\n\n"
+#define WINS "\n       GOKU ALWAYS WINS!\n\n"
+#define LOSE "\n    YOU ARE NOT A TRUE HERO\n\n"
 
 #define ERROR_LOADING_IMG "Error loading image\n"
 #define ERROR_EXTENSION_MAP "Please, check the map extension\n"
@@ -37,19 +44,26 @@
 #define ERROR_NOT_WALLS "Map not surrounded by walls\n"
 #define ERROR_MAP_ELEMENTS "Some elements are incorrect\n"
 #define ERROR_CHARACTERS_NOT_VALID "Characters invalid\n"
+#define ERROR_NOT_ALL_COLLECTS "Not all collectionables collected\n"
+#define ERROR_NOT_EXIT "Can't reach the exit\n"
 
 /* ================= IMAGES PATH ================= */
 #define WALLS "./textures/floors&walls/wall.xpm"
 #define FLOOR "./textures/floors&walls/floor 1.xpm"
+
+/* ==================== COVERS =================== */
+#define PRUEBACOVER "./textures/covers/cover_goku.xpm"
 
 /* ================ BALLS & EXITS ================ */
 #define BALL1 "./textures/balls/1.xpm"
 #define BALL2 "./textures/balls/2.xpm"
 #define BALL3 "./textures/balls/3.xpm"
 #define BALL4 "./textures/balls/4.xpm"
-#define BALL5 "./textures/balls/ball5.xpm"
-#define BALL6 "./textures/balls/ball6.xpm"
-#define BALL7 "./textures/balls/ball7.xpm"
+#define BALL5 "./textures/balls/5.xpm"
+#define BALL6 "./textures/balls/6.xpm"
+#define BALL7 "./textures/balls/7.xpm"
+
+#define PRUEBAENE "./textures/bubu_right.xpm"
 
 #define EXIT1 "./textures/exit/ball1.xpm"
 #define EXIT2 "./textures/exit/exit2.xpm"
@@ -74,13 +88,15 @@
 #define GOKUBASE11 "./textures/goku_base/11.xpm"
 #define GOKUBASE12 "./textures/goku_base/12.xpm"
 #define GOKUBASE13 "./textures/goku_base/13.xpm"
-#define GOKUBASE14 "./textures/goku_base/14.xpm"
 #define GOKUBASE15 "./textures/goku_base/15.xpm"
+#define GOKUBASE16 "./textures/goku_base/16.xpm"
+#define GOKUBASE17 "./textures/goku_base/17.xpm"
+#define GOKUBASE18 "./textures/goku_base/18.xpm"
 
-#define GOKUN	0
-#define GOKUS1	1
-#define GOKUS2	2
-#define GOKUS3	3
+#define GOKUN 0
+#define GOKUS1 1
+#define GOKUS2 2
+#define GOKUS3 3
 
 /* ============== SETTINGS COLORS ================ */
 #define BLACK "\x1B[30m"

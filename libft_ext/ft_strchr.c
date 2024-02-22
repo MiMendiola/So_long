@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:33:25 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/01 19:41:10 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:01:51 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-
 
 // int	main(void)
 // {

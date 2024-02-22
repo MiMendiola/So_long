@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:42 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:08:39 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 // {
 // 	system("leaks -q so_long");
 // }
+
+int	close_cross(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(EXIT_SUCCESS);
+}
 
 int	main(int ac, char *av[])
 {
@@ -34,5 +40,7 @@ int	main(int ac, char *av[])
 		map_read(map, game, av[1]);
 		game_init(game, map);
 	}
+	// free(map);
+	// free(game);
 	return (0);
 }

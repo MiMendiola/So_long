@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:59:34 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/03 17:02:08 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:04:25 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_strjoin_gnl(char *main, char *buffer)
 	}
 	if (!main)
 		return (NULL);
-	dst = malloc((ft_strlen_gnl(main) + ft_strlen_gnl(buffer) + 1) * sizeof(char));
+	dst = malloc((ft_strlen_gnl(main) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (!dst)
 		return (NULL);
 	while (main && main[j])
