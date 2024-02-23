@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:05:42 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 22:08:39 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:53:07 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // {
 // 	system("leaks -q so_long");
 // }
+// atexit(ft_leaks);
 
 int	close_cross(t_game *game)
 {
@@ -28,7 +29,6 @@ int	main(int ac, char *av[])
 	t_map	*map;
 	t_game	*game;
 
-	// atexit(ft_leaks);
 	map = ft_calloc(1, sizeof(t_map));
 	game = ft_calloc(1, sizeof(t_game));
 	if (ac != 2)
@@ -40,7 +40,5 @@ int	main(int ac, char *av[])
 		map_read(map, game, av[1]);
 		game_init(game, map);
 	}
-	// free(map);
-	// free(game);
 	return (0);
 }
