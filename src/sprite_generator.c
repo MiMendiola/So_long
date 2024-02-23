@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 22:19:40 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:47:42 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 static void	*load_image(t_game *game, char *path)
 {
-	int	width;
-	int	height;
+	void	*img;
+	int		width;
+	int		height;
 
 	width = PIXELS;
 	height = PIXELS;
-	return (mlx_xpm_file_to_image(game->mlx, path, &width, &height));
+	img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
+	if (!img)
+		show_error(ERROR_LOADING_IMG);
+	return (img);
 }
 
 static void	*load_cover(t_game *game, char *path)

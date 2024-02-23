@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/23 12:37:23 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:47:45 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	*load_image(t_game *game, char *path)
 {
-	int	width;
-	int	height;
-	void *img;
+	void	*img;
+	int		width;
+	int		height;
 
 	width = PIXELS;
 	height = PIXELS;
