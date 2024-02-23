@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:33:55 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 22:15:34 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:38:08 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 #define FLOOR "./textures/floors&walls/floor 1.xpm"
 
 /* ==================== COVERS =================== */
-#define PRUEBACOVER "./textures/covers/cover_goku.xpm"
+#define COVERGOKU1 "./textures/covers/cover_goku.xpm"
 
 /* ================ BALLS & EXITS ================ */
 #define BALL1 "./textures/balls/1.xpm"
@@ -63,9 +63,9 @@
 #define BALL6 "./textures/balls/6.xpm"
 #define BALL7 "./textures/balls/7.xpm"
 
-#define PRUEBAENE "./textures/bubu_right.xpm"
+#define ENEMY "./textures/bubu_right.xpm"
 
-#define EXIT1 "./textures/exit/ball1.xpm"
+#define EXIT1 "./textures/balls/1.xpm"
 #define EXIT2 "./textures/exit/exit2.xpm"
 #define EXIT3 "./textures/exit/exit3.xpm"
 #define EXIT4 "./textures/exit/exit4.xpm"
@@ -92,11 +92,6 @@
 #define GOKUBASE16 "./textures/goku_base/16.xpm"
 #define GOKUBASE17 "./textures/goku_base/17.xpm"
 #define GOKUBASE18 "./textures/goku_base/18.xpm"
-
-#define GOKUN 0
-#define GOKUS1 1
-#define GOKUS2 2
-#define GOKUS3 3
 
 /* ============== SETTINGS COLORS ================ */
 #define BLACK "\x1B[30m"

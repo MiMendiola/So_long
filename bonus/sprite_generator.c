@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 20:24:24 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:37:23 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ static void	*load_image(t_game *game, char *path)
 {
 	int	width;
 	int	height;
+	void *img;
 
 	width = PIXELS;
 	height = PIXELS;
-	return (mlx_xpm_file_to_image(game->mlx, path, &width, &height));
+	img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
+	if (!img)
+		show_error(ERROR_LOADING_IMG);
+	return (img);
 }
 
 static void	*load_cover(t_game *game, char *path)
@@ -64,7 +68,7 @@ static void	generate_sprites_objs(t_game *game)
 {
 	game->inits->floo = load_image(game, FLOOR);
 	game->inits->wall = load_image(game, WALLS);
-	game->inits->eneb = load_image(game, PRUEBAENE);
+	game->inits->eneb = load_image(game, ENEMY);
 	game->inits->bal1 = load_image(game, BALL1);
 	game->inits->bal2 = load_image(game, BALL2);
 	game->inits->bal3 = load_image(game, BALL3);
@@ -79,7 +83,7 @@ static void	generate_sprites_objs(t_game *game)
 	game->inits->ex5 = load_image(game, EXIT5);
 	game->inits->ex6 = load_image(game, EXIT6);
 	game->inits->ex7 = load_image(game, EXIT7);
-	game->inits->cv1 = load_cover(game, PRUEBACOVER);
+	game->inits->cv1 = load_cover(game, COVERGOKU1);
 }
 
 void	generator_sprites(t_game *game)
