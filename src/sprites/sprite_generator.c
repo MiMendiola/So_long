@@ -6,11 +6,11 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/23 12:48:38 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 static void	*load_image(t_game *game, char *path)
 {

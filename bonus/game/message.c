@@ -6,11 +6,21 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:08:57 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:37 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
+
+void	show_moves(t_game *game)
+{
+	char	*moves;
+
+	moves = ft_itoa(game->steps);
+	mlx_string_put(game->mlx, game->win, 10, 20, 0xFFFFFF, "Steps:");
+	mlx_string_put(game->mlx, game->win, 75, 20, 0xFFFFFF, moves);
+	free(moves);
+}
 
 void	show_error(char *str)
 {
@@ -25,7 +35,7 @@ void	show_win(void)
 	ft_putstr_fd(GREEN, 2);
 	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd(WINS, 2);
-	ft_putstr_fd("==============================", 2);
+	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd("", 2);
 	ft_putstr_fd(CLEAR, 2);
 	exit(EXIT_FAILURE);
@@ -36,7 +46,7 @@ void	show_lose(void)
 	ft_putstr_fd(RED, 2);
 	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd(LOSE, 2);
-	ft_putstr_fd("==============================", 2);
+	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd("", 2);
 	ft_putstr_fd(CLEAR, 2);
 	exit(EXIT_FAILURE);

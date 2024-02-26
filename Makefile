@@ -15,13 +15,17 @@ RM = rm -f
 LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
-SRCS = $(addprefix ./src/, main.c so_long.c map_checker.c map_read.c \
-		frames_charger.c sprite_creator.c sprite_generator.c \
-		movements.c message.c)
+SRCS = $(addprefix ./src/, so_long.c \
+		game/game.c game/message.c \
+		map_parse/map_read.c map_parse/map_checker.c \
+		movements/movements.c movements/frames_charger.c \
+		sprites/sprite_creator.c sprites/sprite_generator.c)
 
-SRCS_BONUS = $(addprefix ./bonus/, main.c so_long.c map_checker.c map_read.c \
-		frames_charger.c sprite_creator.c sprite_covers.c sprite_generator.c \
-		movements.c message.c)
+SRCS_BONUS = $(addprefix ./bonus/, so_long.c \
+		game/game.c game/message.c \
+		map_parse/map_read.c map_parse/map_checker.c \
+		movements/movements.c movements/frames_charger.c \
+		sprites/sprite_creator.c sprites/sprite_covers.c sprites/sprite_generator.c)
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -35,7 +39,7 @@ $(NAME) : $(OBJS)
 	@echo "$(GREEN)Compiling Libft.$(CLEAR)"
 	@make all -sC ./mlx
 	@echo "$(GREEN)Compiling Mlx.$(CLEAR)"
-	@$(CC) $(CFLAGS) $(OBJS) -I ../includes/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -I ../../includes/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)So_long Compiled.$(CLEAR)"
 
 $(NAME_BONUS) : $(OBJS_BONUS)
@@ -43,7 +47,7 @@ $(NAME_BONUS) : $(OBJS_BONUS)
 	@echo "$(GREEN)Compiling Libft.$(CLEAR)"
 	@make all -sC ./mlx
 	@echo "$(GREEN)Compiling Mlx.$(CLEAR)"
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) -I ../includes/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) -I ../../includes/so_long.h $(LIBFTA) $(MLXA) $(MLXFLAGS) -o $(NAME_BONUS)
 	@echo "$(GREEN)So_long Bonus Compiled.$(CLEAR)"
 
 clean:

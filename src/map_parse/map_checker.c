@@ -6,11 +6,11 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:45:16 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:37 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void	map_ext(const char *str, const char *to_find)
 {
@@ -93,8 +93,6 @@ static void	map_characters_small(t_map *map, int i, int j)
 		map->exit += 1;
 	else if (map->map[i][j] == 'C')
 		map->items += 1;
-	else if (map->map[i][j] == 'B')
-		map->enemy += 1;
 	else if (map->map[i][j] != '1' && map->map[i][j] != '0')
 		show_error(ERROR_MAP_ELEMENTS);
 }

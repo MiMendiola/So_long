@@ -6,11 +6,11 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 15:27:36 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 21:55:07 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void	frames_stay(t_game *game, int x, int y)
 {
