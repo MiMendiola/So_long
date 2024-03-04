@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:35:28 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:24:52 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*map_copy(t_map *map, int fd)
 	int		i;
 	int		line_lenght;
 	char	*cmap;
-	char	*cpy_aux;
+	char	*cmap_aux;
 	char	*line;
 
 	i = -1;
@@ -30,10 +30,10 @@ static char	*map_copy(t_map *map, int fd)
 			line_lenght = ft_strlen(line) - 1;
 		if (line && map->map_w != line_lenght)
 			show_error(ERROR_NOT_RECTANGULAR);
-		cpy_aux = ft_strdup(cmap);
+		cmap_aux = ft_strdup(cmap);
 		free(cmap);
-		cmap = ft_strjoin(cpy_aux, line);
-		free(cpy_aux);
+		cmap = ft_strjoin(cmap_aux, line);
+		free(cmap_aux);
 		free(line);
 	}
 	if (cmap[0] == '\n' || cmap[ft_strlen(cmap) - 1] == '\n')
@@ -62,7 +62,7 @@ static void	map_collect(t_map *map)
 
 static void	map_floodfill_path(t_map *map, int x, int y)
 {
-	if (map->map[x][y] == '1' || map->map[x][y] == ' ' || map->map[x][y] == 'B')
+	if (map->map[x][y] == '1' || map->map[x][y] == ' ' || map->map[x][y] == 'F')
 		return ;
 	map->map[x][y] = ' ';
 	map_floodfill_path(map, x, y + 1);

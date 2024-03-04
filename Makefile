@@ -16,16 +16,14 @@ LIBFTA = libft_ext/libft.a
 MLXA = mlx/libmlx.a
 
 SRCS = $(addprefix ./src/, so_long.c \
-		game/game.c game/message.c \
-		map_parse/map_read.c map_parse/map_checker.c \
-		movements/movements.c movements/frames_charger.c \
-		sprites/sprite_creator.c sprites/sprite_generator.c)
+		game/game.c game/message.c game/movements.c\
+		map/map_read.c map/map_checker.c \
+		sprites/sprite_creator.c sprites/sprite_generator.c sprites/frames_charger.c)
 
 SRCS_BONUS = $(addprefix ./bonus/, so_long.c \
-		game/game.c game/message.c \
-		map_parse/map_read.c map_parse/map_checker.c \
-		movements/movements.c movements/frames_charger.c \
-		sprites/sprite_creator.c sprites/sprite_covers.c sprites/sprite_generator.c)
+		game/game.c game/message.c game/movements.c\
+		map/map_read.c map/map_checker.c \
+		sprites/sprite_creator.c sprites/sprite_covers.c sprites/sprite_generator.c sprites/frames_charger.c)
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

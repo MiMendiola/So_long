@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:33:49 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sprite_characters(t_game *game)
 				sprite_balls(game, i, j);
 			else if (game->map_check[i][j] == 'P')
 				sprite_player(game, j * PIXELS, i * PIXELS);
-			else if (game->map_check[i][j] == 'B')
+			else if (game->map_check[i][j] == 'F')
 				mlx_put_image_to_window(game->mlx, game->win, game->inits->eneb,
 					j * PIXELS, i * PIXELS);
 		}
