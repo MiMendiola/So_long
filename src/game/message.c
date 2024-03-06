@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:08:57 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/26 14:13:30 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:12:05 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	show_win(void)
 	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd("", 2);
 	ft_putstr_fd(CLEAR, 2);
-	exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }
 
 void	show_lose(void)
@@ -39,5 +39,5 @@ void	show_lose(void)
 	ft_putstr_fd("==============================\n", 2);
 	ft_putstr_fd("", 2);
 	ft_putstr_fd(CLEAR, 2);
-	exit(EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:48:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/22 22:06:42 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:41:16 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	sprite_map(t_game *game);
 void	sprite_player(t_game *game, int row, int col);
 
 /* ============= SPRITE GENERATOR ============== */
-void	generator_sprites(t_game *game);
+void	creator_sprites(t_game *game);
 
 /* ============ MESSAGE FUNCTIONS ============= */
 void	show_moves(t_game *game);

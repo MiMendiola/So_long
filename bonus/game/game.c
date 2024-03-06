@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:33:18 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:30:26 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ int	frame_executor(t_game *game)
 
 void	game_init(t_game *game, t_map *map)
 {
-	game->image = malloc(sizeof(t_sprites));
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (map->map_w * PIXELS), (map->map_h
 				* PIXELS), "Goku Evolved");
-	generator_sprites(game);
+	creator_sprites(game);
 	mlx_hook(game->win, ON_DESTROY, 0, close_cross, game);
 	mlx_key_hook(game->win, key_press, game);
 	mlx_loop_hook(game->mlx, frame_executor, game);

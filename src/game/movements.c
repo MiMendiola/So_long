@@ -6,7 +6,7 @@
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:43:29 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/02/26 14:07:28 by mmendiol         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:23:24 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	movement_goku_base(t_game *game, int posx, int posy)
 		game->items--;
 	if (game->map_check[posy][posx] == 'E' && game->items == 0)
 		show_win();
-	game->map_check[posy][posx] = '0';
 	game->map_check[posy][posx] = 'P';
 	game->steps++;
 }

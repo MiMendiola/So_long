@@ -5,132 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmendiol <mmendiol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 14:25:21 by mmendiol          #+#    #+#             */
-/*   Updated: 2024/03/04 17:33:49 by mmendiol         ###   ########.fr       */
+/*   Created: 2024/02/19 18:53:29 by mmendiol          #+#    #+#             */
+/*   Updated: 2024/03/06 17:38:24 by mmendiol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	sprite_characters(t_game *game)
+static void	*load_image(t_game *game, char *path)
 {
-	int	i;
-	int	j;
+	void	*img;
+	int		width;
+	int		height;
 
-	i = -1;
-	while (game->map_check[++i])
-	{
-		j = -1;
-		while (game->map_check[i][++j])
-		{
-			mlx_put_image_to_window(game->mlx, game->win, game->inits->floo, j
-				* PIXELS, i * PIXELS);
-			if (game->map_check[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->inits->wall,
-					j * PIXELS, i * PIXELS);
-			else if (game->map_check[i][j] == 'C')
-				sprite_balls(game, i, j);
-			else if (game->map_check[i][j] == 'P')
-				sprite_player(game, j * PIXELS, i * PIXELS);
-			else if (game->map_check[i][j] == 'F')
-				mlx_put_image_to_window(game->mlx, game->win, game->inits->eneb,
-					j * PIXELS, i * PIXELS);
-		}
-	}
+	width = PIXELS;
+	height = PIXELS;
+	img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
+	if (!img)
+		show_error(ERROR_LOADING_IMG);
+	return (img);
 }
 
-// void	sprite_creator(t_game *game, char *path, int i, int j)
-// {
-// 	int	posx;
-// 	int	posy;
-
-// 	game->image->path = path;
-// 	game->image->img_w = PIXELS;
-// 	game->image->img_h = PIXELS;
-// 	posx = j * PIXELS;
-// 	posy = i * PIXELS;
-// 	game->image->img = mlx_xpm_file_to_image(game->mlx, game->image->path,
-// 			&game->image->img_w, &game->image->img_h);
-// 	if (!game->image->img)
-// 		show_error(ERROR_LOADING_IMG);
-// 	mlx_put_image_to_window(game->mlx, game->win, game->image->img, posx, posy);
-// }
-
-void	sprite_balls(t_game *game, int i, int j)
+static void	*load_cover(t_game *game, char *path)
 {
-	if (game->balls == 1)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal1, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 2)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal2, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 3)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal3, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 4)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal4, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 5)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal5, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 6)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal6, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 7)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->bal7, j
-			* PIXELS, i * PIXELS);
+	void	*cover;
+	int	width;
+	int	height;
+	int	x;
+	int	y;
+
+	x = ft_strlen(game->map_check[0]);
+	y = 0;
+	while (game->map_check[y])
+		y++;
+	width = PIXELS * x;
+	height = PIXELS * y;
+	cover = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
+	if (!cover)
+		show_error(ERROR_LOADING_IMG);
+	return (cover);
 }
 
-void	sprite_exit(t_game *game, int i, int j)
+static void	create_sprites_gokubase(t_game *game)
 {
-	if (game->balls == 1)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex1, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 2)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex2, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 3)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex3, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 4)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex4, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 5)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex5, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 6)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex6, j
-			* PIXELS, i * PIXELS);
-	else if (game->balls == 7)
-		mlx_put_image_to_window(game->mlx, game->win, game->inits->ex7, j
-			* PIXELS, i * PIXELS);
+	game->inits->gkb = load_image(game, GOKUBASE);
+	game->inits->gk1 = load_image(game, GOKUBASE1);
+	game->inits->gk2 = load_image(game, GOKUBASE2);
+	game->inits->gk3 = load_image(game, GOKUBASE3);
+	game->inits->gk4 = load_image(game, GOKUBASE4);
+	game->inits->gk5 = load_image(game, GOKUBASE5);
+	game->inits->gk6 = load_image(game, GOKUBASE6);
+	game->inits->gk7 = load_image(game, GOKUBASE7);
+	game->inits->gk8 = load_image(game, GOKUBASE8);
+	game->inits->gk9 = load_image(game, GOKUBASE9);
+	game->inits->gk10 = load_image(game, GOKUBASE10);
+	game->inits->gk11 = load_image(game, GOKUBASE11);
+	game->inits->gk12 = load_image(game, GOKUBASE12);
+	game->inits->gk13 = load_image(game, GOKUBASE13);
+	game->inits->gk15 = load_image(game, GOKUBASE15);
+	game->inits->gk16 = load_image(game, GOKUBASE16);
+	game->inits->gk17 = load_image(game, GOKUBASE17);
+	game->inits->gk18 = load_image(game, GOKUBASE18);
 }
 
-void	sprite_map(t_game *game)
+static void	create_sprites_objs(t_game *game)
 {
-	if (game->flags.fcover < ft_strlen(game->map_check[0]) / 3)
-		sprite_covers(game, game->flags.fcover);
-	else
-	{
-		sprite_characters(game);
-		if (game->items == 0)
-		{
-			game->map_check[game->exity][game->exitx] = 'E';
-			sprite_exit(game, game->exity, game->exitx);
-		}
-	}
+	game->inits->floo = load_image(game, FLOOR);
+	game->inits->wall = load_image(game, WALLS);
+	game->inits->eneb = load_image(game, ENEMY);
+	game->inits->bal1 = load_image(game, BALL1);
+	game->inits->bal2 = load_image(game, BALL2);
+	game->inits->bal3 = load_image(game, BALL3);
+	game->inits->bal4 = load_image(game, BALL4);
+	game->inits->bal5 = load_image(game, BALL5);
+	game->inits->bal6 = load_image(game, BALL6);
+	game->inits->bal7 = load_image(game, BALL7);
+	game->inits->ex1 = load_image(game, EXIT1);
+	game->inits->ex2 = load_image(game, EXIT2);
+	game->inits->ex3 = load_image(game, EXIT3);
+	game->inits->ex4 = load_image(game, EXIT4);
+	game->inits->ex5 = load_image(game, EXIT5);
+	game->inits->ex6 = load_image(game, EXIT6);
+	game->inits->ex7 = load_image(game, EXIT7);
+	game->inits->cv1 = load_cover(game, COVERGOKU1);
 }
 
-void	sprite_player(t_game *game, int row, int col)
+void	creator_sprites(t_game *game)
 {
-	if (game->flags.dir == UP)
-		frames_move_up(game, row, col);
-	if (game->flags.dir == DOWN)
-		frames_move_down(game, row, col);
-	if (game->flags.dir == LEFT)
-		frames_move_left(game, row, col);
-	if (game->flags.dir == RIGHT)
-		frames_move_right(game, row, col);
-	if (game->flags.dir == STAY)
-		frames_stay(game, row, col);
+	game->inits = ft_calloc(1, sizeof(t_init_sprites));
+	create_sprites_objs(game);
+	create_sprites_gokubase(game);
 }
