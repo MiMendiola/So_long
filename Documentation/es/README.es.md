@@ -5,7 +5,7 @@
   ![Proyecto](https://img.shields.io/badge/Proyecto-So_Long-blue)
   ![Licencia](https://img.shields.io/badge/Licencia-MIT-orange)
   ![Versión](https://img.shields.io/badge/Versión-1.0-green)
-  <a href="https://github.com/MiMendiola/So_long/tree/main/Documentation/README.es.md" >
+  <a href="https://github.com/MiMendiola/So_long/tree/main/README.md" >
     <img src="https://img.shields.io/badge/Change_Language-English-purple" align="right">
   </a>
   
