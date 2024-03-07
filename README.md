@@ -5,49 +5,67 @@
   ![Project](https://img.shields.io/badge/Project-So_Long-blue)
   ![Licence](https://img.shields.io/badge/Licence-MIT-orange)
   ![Version](https://img.shields.io/badge/Version-1.0-green)
-  <a href="https://github.com/MiMendiola/Ft_printf/tree/main/Documentation/README.es.md" >
+  <a href="https://github.com/MiMendiola/So_long/tree/main/Documentation/README.es.md" >
     <img src="https://img.shields.io/badge/Cambiar_Idioma-Español-purple" align="right">
   </a>
 
 </div>
 
-This project aims to reprogram the practical function `printf` and learn about using `variadic functions` in C. We can create as many files as we want and keep this in mind while creating our `.h` and `Makefile`.
+The objective of the project is the creation of a **`2D game`**, providing an introduction to video game development by working with **`textures`**, **`sprites`**, and **`event management`** through the use of the **`MiniLibX graphic library`**. This teaches us how to handle graphical elements and user events, understanding better data **`structures`**.
 
-Let's start by discussing our main file, `ft_printf`, where we will have our function as per the subject, using `variadic functions`, and looking for a `%` to identify the type of variable requested. The other function is a `type selector`, where we will also use a variadic function and work with the next character after the `%` found earlier. From that point, we will select the function type depending on the letter found.
+The bonus part includes additional functionalities such as:
 
-Our `ft_printf_basics` will have basic functions that will help us print a single character, or string, or display numbers with and without a sign. Here, we can modify functions previously used in `Libft` while considering the character counter returned, which will be returned in each function.
+- Adding some sprite `animations`.
+- Penalization when `touching an enemy`.
+- Displaying the `step` counter on the `screen`.
 
-In `ft_printf_others`, we placed functions needed to display hexadecimal numbers and others related to pointer addresses, always considering our counter.
+For more information, you can find a **`more detailed explanation`** of each part in the **`Table of Contents`** section.
 
----
+For the development of the game, I focused on making it more modular, dividing the **`so_long.h`** file into several files: **`structs.h`** to define my structures, **`defines.h`** for constants and utilities, and **`so_long.h`** for the project's functions, improving the code's readability and organization.
 
-## Table of Contents
+The map represents the core of the game, making its creation and analysis crucial. We use the **`t_map`** structure for parsing and modifying the map, and **`t_game`** for the graphical representation of the game and the management of the **`P(Player)`** movements. In the map validation, we use a **`flood fill`** algorithm to check if there is a valid path, implemented recursively.
 
-[FT_PRINTF.C](./ft_printf.c)
+The gameplay consists of a **`representation through sprites`**, whose **`size`** is derived from the **`dimensions of the map`** and the **`images used`**. The movements of `P(Player)` are made through **`keyboard events`**, complemented by a loop for **`animations`** and a function for displaying the steps taken, all managed by the **`MLX`**. Additionally, we will have to manage the game's exit through **`window closing`** or pressing the **`ESC`** key.
 
-[FT_PRINTF_BASICS.C](./ft_printf_basics.c)
-
-[FT_PRINTF_OTHERS.C](./ft_printf_others.c)
-
-[FT_PRINTF.H](./ft_printf.h)
+Finally, the **`sprites`** will be optimized by **`storing`** them in a **`dedicated structure`**, simplifying their management in the game. This will facilitate the modification and updating of the `P(Player)` position depending on the user's interaction with the keyboard, ensuring a dynamic and fluid game experience.
 
 ---
 
-## Recommendations
+## **Table of Contents**
 
-Investigate how to work with `variadic functions` and what possibilities of use we have with them.
+[MAP](https://github.com/MiMendiola/So_long/tree/main/Documentation/MAP.md)
 
-Have a clear idea of what `type of conversions` we need to perform and how to make those conversions. For this, you can seek help from some functions in the library, but remember that you cannot include `Libft`.
+[GAME](https://github.com/MiMendiola/So_long/tree/main/Documentation/GAME.md)
 
-Find out and understand how `hexadecimal numbers` work, how they became what they are, and how we can use them to our advantage. Similarly, with `pointer addresses`, understand how they are formed and how to use them.
-
-Keep in mind that we have to return the total sum of what is printed on the screen, so it would be good to have a `counter` that helps us.
+[SPRITES](https://github.com/MiMendiola/So_long/tree/main/Documentation/SPRITES.md)
 
 ---
 
-## Contact
+## **Recommendations**
 
-If you have any questions, suggestions, or comments about ft_printf, feel free to contact me:
+Check [42Docs](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) for detailed information about the library.
 
-- Email: <a href="mailto:mglmendiol@gmail.com" style="text-decoration: none; color:#fff">mglmendiol@gmail.com</a>
-- LinkedIn: <a href="https://www.linkedin.com/in/mimendiola/" style="text-decoration: none; color:#fff;">https://www.linkedin.com/in/mimendiola/</a>
+Organize pending tasks in a **`separate list`**.
+
+From the beginning of the project, use **`system("leaks -q so_long")`** and add the flags **`-g3 -fsanitize=address`** in the makefile. Essential for managing any issue.
+
+Use the **`exit`** function in the program for proper termination.
+
+Maintain **`two separate copies`** of the **`map`** within the project, allowing its use for different purposes.
+
+Initialize **`structures`** at the start of the project. Include nested structures within the main ones to minimize the need for later memory allocation.
+
+Begin with the **`creation and analysis`** of the map. It's crucial to learn the **`flood fill algorithm`**.
+
+Store **`images`** from the beginning in a structure, ensuring they all have the **`same size`**.
+
+---
+
+## **Contact**
+
+If you have any questions, suggestions, or comments about So_long, feel free to contact me:
+
+- Email:
+[mglmendiol@gmail.com](mailto:mglmendiol@gmail.com)
+- LinkedIn:
+[https://www.linkedin.com/in/mimendiola/](https://www.linkedin.com/in/mimendiola/)

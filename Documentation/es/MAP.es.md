@@ -11,19 +11,19 @@ Tengamos claro las reglas que tenemos que seguir para la creacion de nuestro map
 
 Deberemos procesar culquier tipo de mapa siempre y cuando no contenga duplicados de (salida o posición inicial) y que respete todas las reglas anteriores. 
 
-En caso de fallos de cualquier tipo encontrados en el archivo, el programa debe terminar y devolver “Error” seguido de un mensaje de tu elección. Para esto tengo una funcion creada que la podeis encontrar en [GAME](https://www.notion.so/So_Long-69200d7098fd438986ac72d413ac6abf?pvs=21).
+En caso de fallos de cualquier tipo encontrados en el archivo, el programa debe terminar y devolver “Error” seguido de un mensaje de tu elección. Para esto tengo una funcion creada que la podeis encontrar en [GAME](https://github.com/MiMendiola/So_long/tree/main/Documentation/es/GAME.es.md).
 
 Teniendo presentes estas reglas ya podremos `comenzar a crear y parsear` nuestro mapa. Tengo dividido en 2 archivos mis funciones:
 
 **MAP_READ.C**: Contiene las `funciones principales` de nuestra lectura.
 
-- **void		map_read(t_map *map, t_game *game, char *file)**: Es la funcion mas importante de nuestra lectura de mapa, donde llamaremos a todas las demas funciones que hemos creado. Primero comprobaremos la `extension del mapa(**map_ext**)` , proseguiremos consiguiendo las `dimensiones(**map_dimensions**)` para poder utilizarlas al crear la copia. Ahora `copiaremos el mapa(**map_copy**)` en una string y usaremos el `ft_split` para poder `guardar` esa `string` en la `matriz` de la `estructura mapa` y `game` dividiendola por `'\n'` y librearemos nuestra string.
+- **void		map_read(t_map *map, t_game *game, char *file)**: Es la funcion mas importante de nuestra lectura de mapa, donde llamaremos a todas las demas funciones que hemos creado. Primero comprobaremos la **`extension del mapa(map_ext)`** , proseguiremos consiguiendo las **`dimensiones(map_dimensions)`** para poder utilizarlas al crear la copia. Ahora **`copiaremos el mapa(map_copy)`** en una string y usaremos el **`ft_split`** para poder `guardar` esa `string` en la `matriz` de la `estructura mapa` y `game` dividiendola por `'\n'` y librearemos nuestra string.
     
-    Con nuestro mapa ya guardado podremos hacer la `comprobacion` de `bordes(**map_borders**)` y `caracteres(**map_characters**)`. Despues guardaremos en nuestra `estructura game` la posicion del `P(Jugador)` y la `E(Salida)` con **`check_player`**. Ya finalizando comprobaremos si hay un `camino valido(**map_floodfill_path**)` modificando la matriz de nuestra `estructura map`  y comprobaremos si ha llegado a recoger todos los coleccionables y a podido llegar a la salida con nuestra funcion `**map_collect**`.
+    Con nuestro mapa ya guardado podremos hacer la `comprobacion` de **`bordes(map_borders)`** y **`caracteres(map_characters)`**. Despues guardaremos en nuestra `estructura game` la posicion del `P(Jugador)` y la `E(Salida)` con **`check_player`**. Ya finalizando comprobaremos si hay un **`camino valido(map_floodfill_path)`** modificando la matriz de nuestra `estructura map`  y comprobaremos si ha llegado a recoger todos los coleccionables y a podido llegar a la salida con nuestra funcion **`map_collect`**.
     
 - **static char	*map_copy(t_map *map, int fd)**: Crearemos una `copia del mapa`. Haremos un bucle de la `altura del mapa` donde leeremos la linea y sacaremos el ancho de la linea leida. Usando la `anchura` que tenemos `guardada en nuestra estructura`, la compararemos a la anchura sacada por cada linea, y con esto hacemos la `comprobacion del mapa rectangular`.
     
-    Proseguiremos guardando una `copia de cmap en cmap_aux` con `ft_strdup` y limpiaremos nuestro `cmap antiguo`, para hacer una `nueva string` con la `cmap_aux` y la `nueva linea leida`. Tras esto limpiaremos nuestra `cmap_aux` y nuestra `linea leida` , y seguiremos haciendo esto hasta que nuestro archivo mapa se haya `leido por completo`. 
+    Proseguiremos guardando una `copia de cmap en cmap_aux` con **`ft_strdup`** y limpiaremos nuestro `cmap antiguo`, para hacer una `nueva string` con la `cmap_aux` y la `nueva linea leida`. Tras esto limpiaremos nuestra `cmap_aux` y nuestra `linea leida` , y seguiremos haciendo esto hasta que nuestro archivo mapa se haya `leido por completo`. 
     
     Por ultimo, haremos una `comprobacion` de que nuestra `primera posicion(primera linea)` y `ultima posicion(ultima linea)` sean distintos de salto de linea(’\n’). De ser um salto de line, podriamos deducir que el mapa no es rectangular o que no esta todo el mapa rodeado por muros.
     
@@ -38,9 +38,12 @@ Teniendo presentes estas reglas ya podremos `comenzar a crear y parsear` nuestro
 
 **MAP_CHECKER.C**: En este archivo tendremos `funciones utiles` para nuestra lectura de mapa.
 
-- **void		map_ext(const char *str, const char *to_find)**: Vamos a buscar que en nuestro `argumento` ingresado tenga la extension `“.ber”` como final. Para encontrar si la extension del mapa es valida, utilizaremos una modificacion de una de las funciones de nuestra libreria `ft_strnstr`. Si la extension es diferente devolveremos un error.
+- **void		map_ext(const char *str, const char *to_find)**: Vamos a buscar que en nuestro `argumento` ingresado tenga la extension `“.ber”` como final. Para encontrar si la extension del mapa es valida, utilizaremos una modificacion de una de las funciones de nuestra libreria **`ft_strnstr`**. Si la extension es diferente devolveremos un error.
+
 - **void		map_dimensions(t_map *map, char *file)**: Se abrira el archivo y usando el `Get_next_line` leeremos la primera linea con un `ft_strlen`, consiguiendo la `anchura` del mapa y seguiremos haciendo esto con un bucle hasta que el `gnl` termine de leer el archivo. De ahi sacaremos la `altura` del mapa. Posteriormente como estas funciones se ejecutaran al principio de nuestro programa, podremos `inicializar variables` de la estructura del mapa (si no lo hacemos podrian igualarse a valores sin sentido).
+
 - **void		map_borders(t_map *map)**: Con la `copia del mapa` en nuestra estructura `map` iremos `recorriendo los bordes`, comprobando que ninguno de los caracteres sea distinto a un muro `(map->map[0][j] != '1')`.
+
 - **void		map_characters(t_map *map, t_game *game)**: Usaremos un bucle para `recorrer` nuestra `matriz` y usaremos la funcion **map_characters_small(map, i, j)**. Le pasaremos como parametros nuestra `estructura map` y las coordenadas de posicion donde bascara en la matriz:
     - Si es `P(Jugador) / E(Salida) / C(Coleccionable) / F(Enemigo)` tendremos un contador en nuestra estructura de cuantos caracteres hay.
     - Si es `P(Jugador)` tambien obtendremos su `posicion X e Y` para utilizarlo mas tarde.
