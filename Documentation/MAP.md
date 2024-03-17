@@ -36,31 +36,6 @@ With these rules in mind, we can now **`start creating and parsing`** our map. I
 
 - **static void check_player(t_game *game)**: We'll store the coordinates of our `P(Player)` and our `E(Exit)` in our `game` structure.
 
-
-
-
-
-
-
-
-
-
-
-- **void		map_ext(const char *str, const char *to_find)**: vamos a buscar que en nuestro `argumento` ingresado tenga la extension `“.ber”` como final. Para encontrar si la extension del mapa es valida, utilizaremos una modificacion de una de las funciones de nuestra libreria `ft_strnstr`. Si la extension es diferente devolveremos un error.
-- **void		map_dimensions(t_map *map, char *file)**: abriremos el archivo y usando el `Get_next_line` leeremos la primera linea con un `ft_strlen`, consiguiendo la `anchura` del mapa y seguiremos haciendo esto con un bucle hasta que el `gnl` termine de leer el archivo. De ahi sacaremos la `altura` del mapa. Posteriormente como estas funciones se ejecutaran al principio de nuestro programa, podremos `inicializar variables` de la estructura del mapa (si no lo hacemos podrian igualarse a valores sin sentido).
-- **void		map_borders(t_map *map)**: con la `copia del mapa` en nuestra estructura `map` iremos `recorriendo los bordes`, comprobando que ninguno de los caracteres sea distinto a un muro `(map->map[0][j] != '1')`.
-- **void		map_characters(t_map *map, t_game *game)**: usaremos un bucle para `recorrer` nuestra `matriz` y usaremos la funcion **map_characters_small(map, i, j)**. Le pasaremos como parametros nuestra `estructura map` y las coordenadas de posicion donde bascara en la matriz:
-    - Si es `P(Jugador) / E(Salida) / C(Coleccionable) / F(Enemigo)` tendremos un contador en nuestra estructura de cuantos caracteres hay.
-    - Si es `P(Jugador)` tambien obtendremos su `posicion X e Y` para utilizarlo mas tarde.
-    - En caso que no sea ninguno de los anteriores, tendra que ser un `1(Muro) o 0(Espacio)`.
-    - Si es alguno distinto de esos mostraremos un `error`.
-    
-    Terminando ya con esta funcion mas adelante tendremos una comprobacion para ver que haya solo `1 P(Jugador) / 1 E(Salida) / Entre 1 y 7 C(coleccionables)` (podeis hacer que haya minimo 1 coleccionable, pero yo quise darle por la tematica un maximo de 7).
-
-
-
-
-
 **MAP_CHECKER.C**: We will have `useful functions` for our map reading.
 
 - **void map_ext(const char *str, const char *to_find)**: We will check that our `input argument` has the `.ber` extension at the end. To find if the map extension is valid, we'll use a modification of one of our library functions **`ft_strnstr`**. If the extension is different, we'll return an error.
