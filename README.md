@@ -11,7 +11,7 @@
 
 </div>
 
-![video](https://github.com/MiMendiola/So_long/assets/98388947/d7297805-0d39-43b6-a6ef-76c4b5b1bbd1)
+![video](./video/video.gif)
 
 The objective of the project is the creation of a **`2D game`**, providing an introduction to video game development by working with **`textures`**, **`sprites`**, and **`event management`** through the use of the **`MiniLibX graphic library`**. This teaches us how to handle graphical elements and user events, understanding better data **`structures`**.
 

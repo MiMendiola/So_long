@@ -11,6 +11,8 @@
   
 </div>
 
+![video](../../video/video.gif)
+
 El objetivo del proyecto es la creacion de un `juego en 2D` facilitandonos la introduccion al desarrollo de videojuegos, trabajando con `texturas`, `sprites` y `gestion de eventos` mediante el uso de la `librería gráfica MiniLibX`. Esto nos enseña a manejar elementos gráficos y eventos de usuario, asi comprendiendo con mas profundidad las `estructuras` de datos.
 
 La parte bonus incluye funcionalidades adicionales como: 
