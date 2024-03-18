@@ -11,7 +11,11 @@
 
 </div>
 
-![video](./video/video.gif)
+<div align="center">
+  
+  ![video](./video/video.gif)
+  
+</div>
 
 The objective of the project is the creation of a **`2D game`**, providing an introduction to video game development by working with **`textures`**, **`sprites`**, and **`event management`** through the use of the **`MiniLibX graphic library`**. This teaches us how to handle graphical elements and user events, understanding better data **`structures`**.
 
