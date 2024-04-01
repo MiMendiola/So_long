@@ -45,6 +45,8 @@ Finally, the **`sprites`** will be optimized by **`storing`** them in a **`dedic
 
 [SPRITES](https://github.com/MiMendiola/So_long/tree/main/Documentation/SPRITES.md)
 
+[SO_LONG.C](https://github.com/MiMendiola/So_long/tree/main/src/so_long.c)
+
 ---
 
 ## **Recommendations**
