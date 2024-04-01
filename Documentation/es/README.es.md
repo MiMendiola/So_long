@@ -45,6 +45,8 @@ Finalmente, los `sprites` se optimizaran `almacenandolos` en una `estructura ded
 
 [SPRITES](https://github.com/MiMendiola/So_long/tree/main/Documentation/es/SPRITES.es.md)
 
+[SO_LONG.C](https://github.com/MiMendiola/So_long/tree/main/src/so_long.c)
+
 ---
 
 ## Recomendaciones
